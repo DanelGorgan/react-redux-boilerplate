@@ -16,7 +16,8 @@ class UsersList extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+        console.log('----Props');
+        console.log(this.props);
         if (!this.props.users.items) {
             return null;
         }

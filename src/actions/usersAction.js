@@ -1,15 +1,13 @@
 import axios from 'axios'
 
-export const getUsers = () => {
-    return async dispatch => {
-        try {
-            let users = await axios.get("http://localhost:8080/api/users");
-            return dispatch({
-                type: 'GET_USERS',
-                payload: users.data
-            });
-        } catch (e) {
-            console.log(e)
-        }
+export const getUsers = () => async dispatch => {
+    try {
+        let {data} = await axios.get("https://jsonplaceholder.typicode.com/posts");
+        dispatch({
+            type: 'GET_USERS',
+            payload: data
+        });
+    } catch (e) {
+        console.log(e)
     }
 };
