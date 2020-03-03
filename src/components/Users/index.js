@@ -1,6 +1,7 @@
 import React from 'react'
-import { connect } from "react-redux"
-import { getUsers } from '../../actions/usersAction'
+import {connect} from "react-redux"
+import {getUsers} from '../../actions/usersAction'
+import {UserCard} from './userCard'
 
 class UsersList extends React.Component {
 
@@ -16,17 +17,20 @@ class UsersList extends React.Component {
     }
 
     render() {
-        console.log('----Props');
-        console.log(this.props);
-        if (!this.props.users.items) {
+        if (!this.props.users) {
             return null;
         }
-        return <div>Users: {this.props.users.items.length}</div>
+        return (
+            <div>
+                <span>Users</span>
+                {this.props.users.map((user, index) => <UserCard key={index} value={user}/>)}
+            </div>
+        )
     }
 }
 
 const mapStateToProps = state => ({
-    users: state.users
+    users: state.users.items
 });
 
 export default connect(mapStateToProps, {getUsers})(UsersList);
