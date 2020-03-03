@@ -1,8 +1,9 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+
 module.exports = {
-  entry: [resolve(__dirname, 'src/index.js')],
+  entry: ['regenerator-runtime/runtime', resolve(__dirname, 'src/index.js')],
   output: {
     filename: '[name].[hash].js',
     path: resolve(__dirname, 'dist'),
@@ -13,8 +14,8 @@ module.exports = {
   },
   module: {
     rules: [
-      { 
-        test: /\.js$/, 
+      {
+        test: /\.js$/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -29,4 +30,4 @@ module.exports = {
       template: resolve(__dirname, 'src/static/index.html'),
     }),
   ]
-}
+};
